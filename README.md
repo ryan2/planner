@@ -1,1 +1,2 @@
 # planner
+Using Flask & Mongo
