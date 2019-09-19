@@ -34,9 +34,13 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    from . import plan
+    app.register_blueprint(plan.bp)
+    app.add_url_rule('/', endpoint='index')
+
     @app.route('/hello')
-    def index():
-        return render_template("index.html")
+    def hello():
+        return render_template("hello.html")
         '''
         online_users = mongo.db.users.find({"online":True})
         for x in online_users: print(x)
