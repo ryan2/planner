@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+	<h1>{% block title %}Plan{% endblock %}</h1>
+	{% if g.user %}
+		<a class="action" href="{{ url_for('plan.create') }}">New</a>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% for plan in plans %}
+		<article class="post">
+			<header>
+				<div>
+					<h1>{{ plan['title'] }}</h1>
+					<div class="about">by {{ plan['username'] }}</div>
+				</div>
+				{% if g.user['_id']== plan['author_id'] %}
+					<a class="action" href="{{ url_for('plan.update', id=plan['_id']) }}">Update</a>
+				{% endif %}
+			</header>
+			<p class="body">{{ plan['body'] }}</p>
+		</article>
+		{% if not loop.last %}
+			<hr>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
