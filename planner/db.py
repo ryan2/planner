@@ -4,7 +4,7 @@ from flask import current_app, g
 
 def get_db():
     if 'mongo' not in g:
-        current_app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
+        current_app.config["MONGO_URI"] = "mongodb://mongodb:27017/myDatabase"
         g.mongo = PyMongo(current_app)
     return g.mongo
 

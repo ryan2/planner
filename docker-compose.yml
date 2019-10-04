@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+        web_dev:
+                build: .
+                ports:
+                        - "5000:5000"
+                volumes:
+                        - .:/app
+                environment:
+                        FLASK_ENV: development
+                        FLASK_APP: planner
+                links:
+                        - mongodb
+        mongodb:
+                image: mongo:latest
+                ports:
+                        - 27017:27017
+
